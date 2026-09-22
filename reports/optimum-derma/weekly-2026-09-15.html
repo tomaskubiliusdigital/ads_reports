@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimum Derma – Savaitės ataskaita · 38 savaitė</title>
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#898781;
+  --grid:#e1e0d9; --border:rgba(11,11,11,0.10); --series-1:#2a78d6; --series-prev:#c3c2b7;
+  --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19; --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#898781;
+    --grid:#2c2c2a; --border:rgba(255,255,255,0.10); --series-1:#3987e5; --series-prev:#52514e;
+    --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#e66767;
+  }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--page); color:var(--text-primary);
+  font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
+.eyebrow { font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px; }
+h1 { font-size: 30px; margin: 0 0 6px; }
+.meta-row { font-size:13px; color:var(--text-secondary); margin-bottom:22px; }
+.meta-row span + span::before { content:" · "; color:var(--text-muted); }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px; }
+.hero { display:flex; gap:28px; align-items:flex-start; margin-bottom:20px; flex-wrap:wrap; }
+.hero-figure { min-width:120px; }
+.hero-figure .num { font-size:52px; font-weight:700; line-height:1; }
+.hero-figure .label { font-size:12.5px; color:var(--text-secondary); margin-top:6px; }
+.hero-figure .delta { font-size:13px; margin-top:4px; font-weight:600; }
+.hero-text { flex:1; min-width:260px; font-size:15px; line-height:1.6; color:var(--text-primary); }
+.hero-text b.headline { display:block; margin-top:6px; }
+h2 { font-size:17px; margin: 30px 0 10px; }
+.kpi-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:10px; margin-bottom:22px; }
+.kpi-tile { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+.kpi-tile .l { font-size:11.5px; color:var(--text-muted); }
+.kpi-tile .v { font-size:19px; font-weight:700; margin-top:3px; }
+.kpi-tile .d { font-size:12px; margin-top:2px; font-weight:600; }
+.two-col { display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:6px; }
+.two-col .card h3 { font-size:13px; margin:0 0 8px; color:var(--text-secondary); text-transform:uppercase; letter-spacing:.03em; }
+.two-col ul { margin:0; padding-left:18px; font-size:13.5px; line-height:1.6; }
+.chart-block { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px 16px; margin-bottom:12px; }
+.chart-title { font-size:12.5px; color:var(--text-secondary); margin-bottom:8px; font-weight:600; }
+table { width:100%; border-collapse: collapse; font-size:13.5px; margin-bottom:22px; }
+th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.02em; color:var(--text-muted);
+  border-bottom:1px solid var(--grid); padding:7px 9px; }
+td { padding:8px 9px; border-bottom:1px solid var(--grid); }
+tr:last-child td { border-bottom:none; }
+.tag { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; color:#fff; }
+.warn-card { border:1px solid var(--border); border-left:4px solid var(--sev,#898781); background:var(--surface);
+  border-radius:6px; padding:12px 14px; margin-bottom:8px; }
+.warn-card .sev { font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--sev,#898781); }
+.warn-card .title { font-size:14.5px; font-weight:600; margin:3px 0; }
+.warn-card .text { font-size:13.5px; color:var(--text-primary); margin-bottom:6px; }
+.warn-card .rec { font-size:13px; color:var(--text-secondary); }
+.warn-card .badge { float:right; font-size:11px; color:var(--text-muted); }
+.feedback { border:1px dashed var(--border); border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--text-secondary); margin: 20px 0; }
+.footer-note { font-size:11.5px; color:var(--text-muted); line-height:1.6; margin-top:26px; }
+.errors { margin:16px 0; padding:10px 14px; background:rgba(208,59,59,0.08); border:1px solid var(--critical);
+  font-size:13px; color:var(--critical); border-radius:6px; }
+@media (max-width:560px) { .kpi-grid, .two-col { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Savaitės ataskaita · 38 savaitė</div>
+  <h1>Optimum Derma</h1>
+  <div class="meta-row">
+    <span>Laikotarpis: 2026-09-15 – 2026-09-21</span>
+    <span>Lyginama su: 2026-09-08 – 2026-09-14</span>
+    <span>Kanalas: Meta reklama (Facebook ir Instagram)</span>
+    <span>Valiuta: EUR</span>
+  </div>
+
+  <div class="card hero">
+    <div class="hero-figure">
+      <div class="num">10</div>
+      <div class="label">Konversijos šį laikotarpį</div>
+      <div class="delta" style="color:var(--critical)">−65,5 % nuo ankstesnio laikotarpio (29)</div>
+    </div>
+    <div class="hero-text">
+      Per šį laikotarpį išleista <b>89,46 EUR</b>, gauta <b>10 konversijų</b>
+      už <b>393,00 EUR</b>, ROAS <b>4,39</b>.
+      <b class="headline">Svarbiausia dabar: konversijos smarkiai krito – Peržiūrėkite aktyvius kreatyvus ir tikslinę auditoriją – rezultatas smarkiai krito, verta patikrinti, ar nepasikeitė pasiūlymas ar konkurencija.</b>
+    </div>
+  </div>
+
+  <h2>Pagrindiniai rodikliai</h2>
+  <div class="kpi-grid"><div class="kpi-tile"><div class="l">Išlaidos</div><div class="v">89,46 EUR</div><div class="d" style="color:var(--text-muted)">–</div></div><div class="kpi-tile"><div class="l">Konversijos</div><div class="v">10</div><div class="d" style="color:var(--critical)">−65,5 %</div></div><div class="kpi-tile"><div class="l">Kaina/konv.</div><div class="v">8,95 EUR</div><div class="d" style="color:var(--critical)">+95,4 %</div></div><div class="kpi-tile"><div class="l">ROAS</div><div class="v">4,39</div><div class="d" style="color:var(--critical)">−54,6 %</div></div><div class="kpi-tile"><div class="l">CTR</div><div class="v">1,14 %</div><div class="d" style="color:var(--critical)">−18,0 %</div></div><div class="kpi-tile"><div class="l">Paspaudimai</div><div class="v">192</div><div class="d" style="color:var(--critical)">−36,8 %</div></div></div>
+
+  
+  <div class="two-col">
+    <div class="card"><h3>Kas pastebėta</h3><ul><li>Išlaidos sumažėjo 32,7 % (132,95 EUR → 89,46 EUR).</li><li>Konversijų mažiau 65,5 % (29 → 10).</li></ul></div>
+    <div class="card"><h3>Geriausi rezultatai</h3><ul><li>Geriausia diena – 15 rugsėjo d.: 6 konversijos už 17,11 EUR.</li></ul></div>
+  </div>
+
+  <h2>Kaip vyko dienomis</h2>
+  <div class="chart-block"><div class="chart-title">Išlaidos per dieną (EUR)</div><svg viewBox="0 0 640 26" width="100%" style="max-width:640px" role="img"><g transform="translate(4,4)"><g font-size="11" fill="var(--text-muted)"><rect x="0" y="0" width="9" height="9" rx="2" fill="var(--series-prev)"/><text x="14" y="8.5">Ankstesnis laikotarpis</text><rect x="150" y="0" width="9" height="9" rx="2" fill="var(--series-1)"/><text x="164" y="8.5">Šis laikotarpis</text></g></g><g transform="translate(0,22)"><line x1="8" x2="632" y1="10.0" y2="10.0" stroke="var(--grid)" stroke-width="1"/><line x1="8" x2="632" y1="87.0" y2="87.0" stroke="var(--grid)" stroke-width="1"/><line x1="8" x2="632" y1="164.0" y2="164.0" stroke="var(--grid)" stroke-width="1"/><rect x="24.8" y="10.0" width="26.7" height="154.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 34,87 EUR</title></rect><rect x="53.6" y="88.4" width="26.7" height="75.6" rx="2.5" fill="var(--series-1)"><title>An: 17,11 EUR</title></rect><text x="51.6" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">An</text><rect x="114.0" y="21.9" width="26.7" height="142.1" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 32,18 EUR</title></rect><rect x="142.7" y="88.7" width="26.7" height="75.3" rx="2.5" fill="var(--series-1)"><title>Tr: 17,04 EUR</title></rect><text x="140.7" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Tr</text><rect x="203.1" y="69.4" width="26.7" height="94.6" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 21,42 EUR</title></rect><rect x="231.9" y="93.7" width="26.7" height="70.3" rx="2.5" fill="var(--series-1)"><title>Kt: 15,92 EUR</title></rect><text x="229.9" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Kt</text><rect x="292.3" y="98.3" width="26.7" height="65.7" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 14,88 EUR</title></rect><rect x="321.0" y="117.2" width="26.7" height="46.8" rx="2.5" fill="var(--series-1)"><title>Pn: 10,59 EUR</title></rect><text x="319.0" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Pn</text><rect x="381.4" y="125.1" width="26.7" height="38.9" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 8,80 EUR</title></rect><rect x="410.1" y="128.8" width="26.7" height="35.2" rx="2.5" fill="var(--series-1)"><title>Št: 7,97 EUR</title></rect><text x="408.1" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Št</text><rect x="470.5" y="131.9" width="26.7" height="32.1" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 7,26 EUR</title></rect><rect x="499.3" y="122.0" width="26.7" height="42.0" rx="2.5" fill="var(--series-1)"><title>Sk: 9,50 EUR</title></rect><text x="497.3" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Sk</text><rect x="559.7" y="104.2" width="26.7" height="59.8" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 13,54 EUR</title></rect><rect x="588.4" y="114.0" width="26.7" height="50.0" rx="2.5" fill="var(--series-1)"><title>Pr: 11,33 EUR</title></rect><text x="586.4" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Pr</text></g></svg></div>
+  <div class="chart-block"><div class="chart-title">Konversijos per dieną</div><svg viewBox="0 0 640 26" width="100%" style="max-width:640px" role="img"><g transform="translate(4,4)"><g font-size="11" fill="var(--text-muted)"><rect x="0" y="0" width="9" height="9" rx="2" fill="var(--series-prev)"/><text x="14" y="8.5">Ankstesnis laikotarpis</text><rect x="150" y="0" width="9" height="9" rx="2" fill="var(--series-1)"/><text x="164" y="8.5">Šis laikotarpis</text></g></g><g transform="translate(0,22)"><line x1="8" x2="632" y1="10.0" y2="10.0" stroke="var(--grid)" stroke-width="1"/><line x1="8" x2="632" y1="87.0" y2="87.0" stroke="var(--grid)" stroke-width="1"/><line x1="8" x2="632" y1="164.0" y2="164.0" stroke="var(--grid)" stroke-width="1"/><rect x="24.8" y="94.0" width="26.7" height="70.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 5</title></rect><rect x="53.6" y="80.0" width="26.7" height="84.0" rx="2.5" fill="var(--series-1)"><title>An: 6</title></rect><text x="51.6" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">An</text><rect x="114.0" y="10.0" width="26.7" height="154.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 11</title></rect><rect x="142.7" y="122.0" width="26.7" height="42.0" rx="2.5" fill="var(--series-1)"><title>Tr: 3</title></rect><text x="140.7" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Tr</text><rect x="203.1" y="108.0" width="26.7" height="56.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 4</title></rect><rect x="231.9" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-1)"><title>Kt: 0</title></rect><text x="229.9" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Kt</text><rect x="292.3" y="66.0" width="26.7" height="98.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 7</title></rect><rect x="321.0" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-1)"><title>Pn: 0</title></rect><text x="319.0" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Pn</text><rect x="381.4" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 0</title></rect><rect x="410.1" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-1)"><title>Št: 0</title></rect><text x="408.1" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Št</text><rect x="470.5" y="150.0" width="26.7" height="14.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 1</title></rect><rect x="499.3" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-1)"><title>Sk: 0</title></rect><text x="497.3" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Sk</text><rect x="559.7" y="150.0" width="26.7" height="14.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 1</title></rect><rect x="588.4" y="150.0" width="26.7" height="14.0" rx="2.5" fill="var(--series-1)"><title>Pr: 1</title></rect><text x="586.4" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Pr</text></g></svg></div>
+
+  <h2>Kampanijos</h2>
+  <table><thead><tr><th>Kampanija</th><th>Išlaidos</th><th>Paspaudimai</th><th>CTR</th><th>Konversijos</th><th>Kaina/konv.</th><th>ROAS</th><th>Pokytis</th></tr></thead><tbody><tr><td>TK | ABO | LEADS_AUDIENCE_TEST_260217</td><td>89,46 EUR</td><td>192</td><td>1,14 %</td><td>10</td><td>8,95 EUR</td><td>4,39</td><td><span style="color:var(--critical)">▼ 41%</span></td></tr></tbody></table>
+
+  <h2>Kreatyvai (Meta): ką palikti, ką atnaujinti</h2><table><thead><tr><th>Kreatyvas</th><th>Kampanija</th><th>Išlaidos</th><th>Konversijos</th><th>ROAS</th><th>Sprendimas</th><th>Kodėl</th></tr></thead><tbody><tr><td>DCO_TEST6</td><td>TK | ABO | LEADS_AUDIENCE_TEST_260217</td><td>89,46 EUR</td><td>10</td><td>4,39</td><td><span class="tag" style="background:#0ca30c">Palikti</span></td><td><span style="color:var(--text-secondary);font-size:12.5px">ROAS 4,39, 10 konversijos – rezultatas stabilus.</span></td></tr></tbody></table>
+
+
+  <h2>Pastebėjimai ir rekomendacijos</h2>
+  <div class="warn-card" style="--sev:#ec835a"><span class="badge">Per 2 savaites</span><div class="sev">Verta dėmesio</div><div class="title">Konversijos smarkiai krito</div><div class="text">Konversijų 10 (buvo 29), pokytis −65,5 %.</div><div class="rec"><b style="color:var(--text-primary)">Siūlome:</b> Peržiūrėkite aktyvius kreatyvus ir tikslinę auditoriją – rezultatas smarkiai krito, verta patikrinti, ar nepasikeitė pasiūlymas ar konkurencija.</div></div><div class="warn-card" style="--sev:#ec835a"><span class="badge">Per 2 savaites</span><div class="sev">Verta dėmesio</div><div class="title">Konversijos kaina išaugo</div><div class="text">Kaina už konversiją 8,95 EUR (buvo 4,58 EUR), pokytis +95,4 %.</div><div class="rec"><b style="color:var(--text-primary)">Siūlome:</b> Prieš didinant biudžetą palaukite, kol kaina stabilizuosis, arba išbandykite naujus kreatyvo/auditorijos variantus.</div></div>
+
+  <div class="feedback">
+    <b>Reikia jūsų atsakymo?</b> Jei šiuo laikotarpiu buvo specialus pasiūlymas, akcija ar renginys, kuris galėjo
+    paveikti rezultatus, praneškite – pritaikysime kampanijas ir kitos ataskaitos interpretaciją atitinkamai.
+  </div>
+
+  
+
+  <p class="footer-note">
+    Ataskaita parengta 2026-09-22. Meta ir Google konversijos skaičiuojamos kiekvienos platformos atskirai
+    ir nėra dedublikuotos, todėl bendras ROAS yra orientacinis.
+  </p>
+</div>
+</body>
+</html>
