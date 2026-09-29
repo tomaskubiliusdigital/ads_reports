@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-nova – Savaitės ataskaita · 39 savaitė</title>
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --text-primary:#0b0b0b; --text-secondary:#3a3a38; --text-muted:#898781;
+  --grid:#e1e0d9; --border:rgba(11,11,11,0.10); --series-1:#2a78d6; --series-2:#eb6834; --series-prev:#c3c2b7;
+  --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19; --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#898781;
+    --grid:#2c2c2a; --border:rgba(255,255,255,0.10); --series-1:#3987e5; --series-2:#d95926; --series-prev:#52514e;
+    --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#e66767;
+  }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--page); color:var(--text-primary);
+  font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 36px 20px 70px; }
+.eyebrow { font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); }
+h1 { font-size: 26px; margin: 8px 0 22px; line-height:1.3; }
+.meta-row { font-size:12.5px; color:var(--text-muted); margin:-14px 0 26px; }
+.meta-row span + span::before { content:" · "; }
+p { font-size:15.5px; line-height:1.75; color:var(--text-secondary); margin:0 0 18px; }
+h2 { font-size:16px; margin: 32px 0 10px; border-top:1px solid var(--border); padding-top:24px; color:var(--text-primary); }
+h2:first-of-type { border-top:none; padding-top:0; }
+h3 { font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--text-muted); margin:22px 0 8px; }
+.num { font-weight:700; color:var(--text-primary); }
+.pill { display:inline-block; padding:1px 7px; border-radius:20px; font-size:12px; font-weight:700; color:#fff; }
+.pill.good { background:var(--good); } .pill.bad { background:var(--critical); } .pill.flat { background:var(--text-muted); }
+blockquote { margin:18px 0; padding:13px 17px; border-left:3px solid var(--series-1); background:var(--surface);
+  border-radius:0 8px 8px 0; font-size:14px; line-height:1.6; color:var(--text-secondary); }
+blockquote b { color:var(--text-primary); }
+blockquote.sev-high { border-left-color:var(--critical); }
+blockquote.sev-medium { border-left-color:var(--serious); }
+blockquote.sev-low { border-left-color:var(--text-muted); }
+blockquote.sev-info { border-left-color:var(--series-1); }
+blockquote.sev-good { border-left-color:var(--good); }
+ul { font-size:14.5px; line-height:1.75; color:var(--text-secondary); padding-left:20px; margin:0 0 18px; }
+table { width:100%; border-collapse: collapse; font-size:13px; margin:8px 0 20px; }
+th { text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.02em; color:var(--text-muted);
+  border-bottom:1px solid var(--grid); padding:6px 8px; font-weight:600; white-space:nowrap; }
+td { padding:7px 8px; border-bottom:1px solid var(--grid); color:var(--text-secondary); }
+td:first-child { color:var(--text-primary); }
+/* numeric/date/badge cells never wrap mid-value; prose cells (names, "why" text) wrap normally */
+td.nw { white-space:nowrap; }
+tr:last-child td { border-bottom:none; }
+/* wide tables (many numeric columns) scroll horizontally on narrow screens instead of
+   squeezing every column until values wrap and rows lose their alignment */
+.table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:8px 0 20px; }
+.table-scroll table { margin:0; min-width:560px; }
+.tag { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; color:#fff; }
+.mini-chart { display:flex; align-items:flex-end; gap:3px; height:34px; margin:10px 0 4px; }
+.mini-chart div.bar { flex:1; background:var(--series-1); opacity:.85; border-radius:2px 2px 0 0; min-height:2px; }
+.mini-chart-label { font-size:11px; color:var(--text-muted); margin-bottom:16px; }
+.feedback { border:1px dashed var(--border); border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--text-secondary); margin: 20px 0; }
+.footer-note { font-size:11.5px; color:var(--text-muted); line-height:1.6; margin-top:30px; padding-top:18px; border-top:1px solid var(--border); }
+.errors { margin:16px 0; padding:10px 14px; background:rgba(208,59,59,0.08); border:1px solid var(--critical);
+  font-size:13px; color:var(--critical); border-radius:6px; }
+.channels { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:0 0 6px; }
+@media (max-width:480px) { .channels { grid-template-columns:1fr; } }
+.chcard { border:1px solid var(--border); border-radius:10px; padding:16px; background:var(--surface); }
+.chcard .head { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+.chcard .dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+.chcard.meta .dot { background:var(--series-1); }
+.chcard.google .dot { background:var(--series-2); }
+.chcard h4 { font-size:14px; margin:0; color:var(--text-primary); }
+.chcard .metric-row { display:flex; justify-content:space-between; align-items:baseline; font-size:13px;
+  padding:6px 0; border-bottom:1px solid var(--border); }
+.chcard .metric-row:last-child { border-bottom:none; }
+.chcard .metric-row .m { color:var(--text-muted); }
+.chcard .metric-row .v { font-weight:700; color:var(--text-primary); }
+.chcard .metric-row .d { font-size:11px; font-weight:600; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Savaitės ataskaita · 39 savaitė</div>
+  <h1>E-nova</h1>
+  <div class="meta-row">
+    <span>Laikotarpis: 2026-09-21 – 2026-09-27</span>
+    <span>Lyginama su: 2026-09-14 – 2026-09-20</span>
+    <span>Kanalas: Meta ir Google reklama</span>
+    <span>Valiuta: EUR</span>
+  </div>
+
+  <p>Per šį laikotarpį iš viso išleista <span class="num">138,59 EUR</span>, gauta <span class="num">1 konversijų</span><span class="pill flat">0,0 %</span>, bendras ROAS <span class="num">1,10</span>. <b>Svarbiausia dabar: konversijos kaina išaugo – Prieš didinant biudžetą palaukite, kol kaina stabilizuosis, arba išbandykite naujus kreatyvo/auditorijos variantus.</b></p>
+
+  
+  <h2>Kas vyko su Meta Ads reklama</h2>
+  <p>Šį laikotarpį Meta Ads išleista <b>138,59 EUR</b> (+149,7 %), gauta <b>1 konversijų</b> (0,0 %). Konversijos kaina pakilo +149,7 % – greičiausiai prie to prisidėjo konversijos rodiklio pokytis (−40,0 %).</p>
+  <div style="margin:14px 0"><div class="mini-chart-label" style="margin-bottom:6px">Išlaidos per dieną (EUR)</div><svg viewBox="0 0 640 216" width="100%" style="max-width:640px" role="img"><g transform="translate(4,4)"><g font-size="11" fill="var(--text-muted)"><rect x="0" y="0" width="9" height="9" rx="2" fill="var(--series-prev)"/><text x="14" y="8.5">Ankstesnis laikotarpis</text><rect x="150" y="0" width="9" height="9" rx="2" fill="var(--series-1)"/><text x="164" y="8.5">Šis laikotarpis</text></g></g><g transform="translate(0,22)"><line x1="8" x2="632" y1="10.0" y2="10.0" stroke="var(--grid)" stroke-width="1"/><line x1="8" x2="632" y1="87.0" y2="87.0" stroke="var(--grid)" stroke-width="1"/><line x1="8" x2="632" y1="164.0" y2="164.0" stroke="var(--grid)" stroke-width="1"/><rect x="24.8" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 0,00 EUR</title></rect><rect x="53.6" y="65.1" width="26.7" height="98.9" rx="2.5" fill="var(--series-1)"><title>Pr: 17,37 EUR</title></rect><text x="51.6" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Pr</text><rect x="114.0" y="86.9" width="26.7" height="77.1" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 13,54 EUR</title></rect><rect x="142.7" y="21.8" width="26.7" height="142.2" rx="2.5" fill="var(--series-1)"><title>An: 24,97 EUR</title></rect><text x="140.7" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">An</text><rect x="203.1" y="61.7" width="26.7" height="102.3" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 17,97 EUR</title></rect><rect x="231.9" y="10.0" width="26.7" height="154.0" rx="2.5" fill="var(--series-1)"><title>Tr: 27,04 EUR</title></rect><text x="229.9" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Tr</text><rect x="292.3" y="33.2" width="26.7" height="130.8" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 22,96 EUR</title></rect><rect x="321.0" y="11.8" width="26.7" height="152.2" rx="2.5" fill="var(--series-1)"><title>Kt: 26,72 EUR</title></rect><text x="319.0" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Kt</text><rect x="381.4" y="158.1" width="26.7" height="5.9" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 1,03 EUR</title></rect><rect x="410.1" y="26.5" width="26.7" height="137.5" rx="2.5" fill="var(--series-1)"><title>Pn: 24,15 EUR</title></rect><text x="408.1" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Pn</text><rect x="470.5" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 0,00 EUR</title></rect><rect x="499.3" y="111.4" width="26.7" height="52.6" rx="2.5" fill="var(--series-1)"><title>Št: 9,23 EUR</title></rect><text x="497.3" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Št</text><rect x="559.7" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 0,00 EUR</title></rect><rect x="588.4" y="112.1" width="26.7" height="51.9" rx="2.5" fill="var(--series-1)"><title>Sk: 9,11 EUR</title></rect><text x="586.4" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Sk</text></g></svg></div>
+  <div style="margin:14px 0"><div class="mini-chart-label" style="margin-bottom:6px">Konversijos per dieną</div><svg viewBox="0 0 640 216" width="100%" style="max-width:640px" role="img"><g transform="translate(4,4)"><g font-size="11" fill="var(--text-muted)"><rect x="0" y="0" width="9" height="9" rx="2" fill="var(--series-prev)"/><text x="14" y="8.5">Ankstesnis laikotarpis</text><rect x="150" y="0" width="9" height="9" rx="2" fill="var(--series-1)"/><text x="164" y="8.5">Šis laikotarpis</text></g></g><g transform="translate(0,22)"><line x1="8" x2="632" y1="10.0" y2="10.0" stroke="var(--grid)" stroke-width="1"/><line x1="8" x2="632" y1="87.0" y2="87.0" stroke="var(--grid)" stroke-width="1"/><line x1="8" x2="632" y1="164.0" y2="164.0" stroke="var(--grid)" stroke-width="1"/><rect x="24.8" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 0</title></rect><rect x="53.6" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-1)"><title>Pr: 0</title></rect><text x="51.6" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Pr</text><rect x="114.0" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 0</title></rect><rect x="142.7" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-1)"><title>An: 0</title></rect><text x="140.7" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">An</text><rect x="203.1" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 0</title></rect><rect x="231.9" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-1)"><title>Tr: 0</title></rect><text x="229.9" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Tr</text><rect x="292.3" y="10.0" width="26.7" height="154.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 1</title></rect><rect x="321.0" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-1)"><title>Kt: 0</title></rect><text x="319.0" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Kt</text><rect x="381.4" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 0</title></rect><rect x="410.1" y="10.0" width="26.7" height="154.0" rx="2.5" fill="var(--series-1)"><title>Pn: 1</title></rect><text x="408.1" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Pn</text><rect x="470.5" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 0</title></rect><rect x="499.3" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-1)"><title>Št: 0</title></rect><text x="497.3" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Št</text><rect x="559.7" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-prev)"><title>Ankstesnis: 0</title></rect><rect x="588.4" y="164.0" width="26.7" height="1.0" rx="2.5" fill="var(--series-1)"><title>Sk: 0</title></rect><text x="586.4" y="182" font-size="10.5" fill="var(--text-muted)" text-anchor="middle">Sk</text></g></svg></div>
+  <blockquote class="sev-medium"><b>Konversijos kaina išaugo.</b> Kaina už konversiją 138,59 EUR (buvo 55,50 EUR), pokytis +149,7 %. <span style="color:var(--text-muted)">Siūlome: Prieš didinant biudžetą palaukite, kol kaina stabilizuosis, arba išbandykite naujus kreatyvo/auditorijos variantus <i>(per 2 savaites)</i>.</span></blockquote><blockquote class="sev-info"><b>Išlaidos smarkiai išaugo.</b> Išleista 138,59 EUR (buvo 55,50 EUR). <span style="color:var(--text-muted)">Siūlome: Sekite, ar rezultatai (konversijos) auga proporcingai didesnėms išlaidoms <i>(kai patogu)</i>.</span></blockquote>
+
+  <h3>Pagrindiniai rodikliai</h3>
+  <div class="table-scroll"><table><thead><tr><th>Rodiklis</th><th>Praėjusį laikotarpį</th><th>Šį laikotarpį</th><th>Pokytis</th></tr></thead><tbody><tr><td>Išlaidos</td><td class="nw">55,50 EUR</td><td class="nw">138,59 EUR</td><td class="nw">+149,7 %</td></tr><tr><td>Pirkimo veiksmai</td><td class="nw">1</td><td class="nw">1</td><td class="nw">0,0 %</td></tr><tr><td>Leads / užklausos</td><td class="nw">0</td><td class="nw">0</td><td class="nw">–</td></tr><tr><td>Konversijos rodiklis</td><td class="nw">0,35 %</td><td class="nw">0,21 %</td><td class="nw">−40,0 %</td></tr><tr><td>Konversijos kaina</td><td class="nw">55,50 EUR</td><td class="nw">138,59 EUR</td><td class="nw">+149,7 %</td></tr><tr><td>ROAS</td><td class="nw">0,18</td><td class="nw">1,10</td><td class="nw">+511,1 %</td></tr><tr><td>CTR</td><td class="nw">3,49 %</td><td class="nw">2,49 %</td><td class="nw">−28,7 %</td></tr><tr><td>Paspaudimai</td><td class="nw">282</td><td class="nw">487</td><td class="nw">+72,7 %</td></tr><tr><td>Add to carts</td><td class="nw">0</td><td class="nw">0</td><td class="nw">–</td></tr><tr><td>Checkoutai</td><td class="nw">1</td><td class="nw">5</td><td class="nw">+400,0 %</td></tr><tr><td>Frequency</td><td class="nw">2,10</td><td class="nw">2,35</td><td class="nw">+11,9 %</td></tr></tbody></table></div>
+  <div style="margin-top:14px"><b style="font-size:13px">Auditorijos pjūvis pagal amžių</b><div class="table-scroll"><table style="margin-top:6px"><thead><tr><th>Amžius</th><th>Išlaidos</th><th>Dalis</th><th>Konversijos</th></tr></thead><tbody><tr><td>45-54</td><td class="nw">50,68 EUR</td><td class="nw">36,6 %</td><td class="nw">0</td></tr><tr><td>35-44</td><td class="nw">47,30 EUR</td><td class="nw">34,1 %</td><td class="nw">0</td></tr><tr><td>55-64</td><td class="nw">25,18 EUR</td><td class="nw">18,2 %</td><td class="nw">1</td></tr><tr><td>25-34</td><td class="nw">8,58 EUR</td><td class="nw">6,2 %</td><td class="nw">0</td></tr><tr><td>65+</td><td class="nw">6,85 EUR</td><td class="nw">4,9 %</td><td class="nw">0</td></tr></tbody></table></div></div>
+  <div style="margin-top:14px"><b style="font-size:13px">Pagrindiniai placementai</b><div class="table-scroll"><table style="margin-top:6px"><thead><tr><th>Placementas</th><th>Išlaidos</th><th>CTR</th><th>Konversijos</th></tr></thead><tbody><tr><td>Facebook / Feed</td><td class="nw">115,10 EUR</td><td class="nw">2,71 %</td><td class="nw">1</td></tr><tr><td>Instagram / Feed</td><td class="nw">9,07 EUR</td><td class="nw">0,66 %</td><td class="nw">0</td></tr><tr><td>Facebook / Facebook Reels</td><td class="nw">7,11 EUR</td><td class="nw">1,64 %</td><td class="nw">0</td></tr><tr><td>Facebook / Facebook Stories</td><td class="nw">3,69 EUR</td><td class="nw">2,19 %</td><td class="nw">0</td></tr><tr><td>Instagram / Instagram Stories</td><td class="nw">2,13 EUR</td><td class="nw">0,00 %</td><td class="nw">0</td></tr><tr><td>Instagram / Instagram Reels</td><td class="nw">1,09 EUR</td><td class="nw">0,60 %</td><td class="nw">0</td></tr></tbody></table></div></div>
+
+  <h3>Kampanijos</h3>
+  <div class="table-scroll"><table><thead><tr><th>Kampanija</th><th>Išlaidos</th><th>Paspaudimai</th><th>CTR</th><th>Konversijos</th><th>Kaina/konv.</th><th>ROAS</th><th>Pokytis</th></tr></thead><tbody><tr><td>TK | DAS_ISPARDAVIMAS_260914</td><td class="nw">138,59 EUR</td><td class="nw">487</td><td class="nw">2,49 %</td><td class="nw">1</td><td class="nw">138,59 EUR</td><td class="nw">1,10</td><td class="nw"><span style="color:var(--text-muted)">– stabilu</span></td></tr></tbody></table></div>
+  <h3>Kreatyvai: ką palikti, ką atnaujinti</h3><div class="table-scroll"><table><thead><tr><th>Kreatyvas</th><th>Kampanija</th><th>Išlaidos</th><th>Konversijos</th><th>ROAS</th><th>Sprendimas</th><th>Kodėl</th></tr></thead><tbody><tr><td>DCO_3_STATICS_260914</td><td>TK | DAS_ISPARDAVIMAS_260914</td><td class="nw">138,59 EUR</td><td class="nw">1</td><td class="nw">1,10</td><td class="nw"><span class="tag" style="background:#fab219">Stebėti</span></td><td><span style="color:var(--text-secondary);font-size:12.5px">Rezultatas yra (1 konversijos), bet dar neaiškus – stebėti dar savaitę.</span></td></tr></tbody></table></div>
+
+
+  <div class="feedback">
+    <b>Reikia jūsų atsakymo?</b> Jei šiuo laikotarpiu buvo specialus pasiūlymas, akcija ar renginys, kuris galėjo
+    paveikti rezultatus, praneškite – pritaikysime kampanijas ir kitos ataskaitos interpretaciją atitinkamai.
+  </div>
+
+  <div class="errors">Google Ads 1143869140: HTTP 401 https://googleads.googleapis.com/v25/customers/1143869140/googleAds:searchStream: [{"error": {"code": 401, "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.", "status": "UNAUTHENTICATED"}}]<br>Google Ads 1143869140 (dienomis): HTTP 401 https://googleads.googleapis.com/v25/customers/1143869140/googleAds:searchStream: [{"error": {"code": 401, "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.", "status": "UNAUTHENTICATED"}}]<br>Google Ads 1143869140 (kampanijos): HTTP 401 https://googleads.googleapis.com/v25/customers/1143869140/googleAds:searchStream: [{"error": {"code": 401, "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.", "status": "UNAUTHENTICATED"}}]</div>
+
+  <p class="footer-note">
+    Ataskaita parengta 2026-09-29. Meta ir Google konversijos skaičiuojamos kiekvienos platformos atskirai
+    ir nėra dedublikuotos, todėl bendras ROAS yra orientacinis.
+  </p>
+</div>
+</body>
+</html>
